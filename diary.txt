@@ -1,0 +1,76 @@
+28.11.2021 
+1. Setup 
+   a) Create virtual environment
+      >> pytnon -m venv django-env
+
+   b) Activate v. env.
+      >> ./django-env/Scripts/Activate
+      # to deactivate v. env.: >> deactivate
+
+   c) Install django
+      >> pip install django
+
+   d) Start project
+      >> django-admin startproject carzone .
+
+   e) Run server
+      >> python manage.py runserver
+      # to quit Ctrl+C several times
+
+2. Creating Application
+   a) >> python manage.py startapp pages 
+   
+   b) Add appconfig to installed_apps
+      
+      | carzone/settings.py :
+         INSTALLED_APPS = [
+            'pages.apps.PagesConfig',   # +++
+            ...
+         ]
+
+3. Hello World
+   a) Create folders templates/pages in the root directory
+      create home.html
+
+      | templates/pages/home.html :
+         <h2>Hello World</h2> 
+
+   b) Configuring urls inside pages Application
+      
+      create pages/urls.py :
+         from django.urls import path
+         from . import views
+
+         urlpatterns = [
+            path('', views.home, name='home'),
+         ]
+
+   c) Configuring views inside pages Application
+
+      create pages/views.py :
+         from django.shortcuts import render
+         # Create your views here.
+
+         def home(request):
+            return render(request, 'pages/home.html')
+
+   d) Configuring urls inside carzone project
+      
+      | carzone/urls.py :
+         from django.contrib import admin
+         from django.urls import path, include  # +++ include
+
+         urlpatterns = [
+            path('admin/', admin.site.urls),
+            path('', include('pages.urls')),    # +++
+         ]
+
+   e) Add templates to settings:
+      
+      | carzone/settings/py :
+         TEMPLATES = [
+         {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': ['templates'], # +++ templates
+               ...
+         }
