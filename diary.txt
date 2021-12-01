@@ -74,3 +74,32 @@
             'DIRS': ['templates'], # +++ templates
                ...
          }
+
+01.12.2021
+Static files.
+
+Create folder 'static' in carzone/
+Copy css files for home page to carzone/static
+Copy index.html content to template/pages/home.html
+
+| carzone/settings.py
+
+# +++
+STATIC_ROOT = BASE_DIR / 'static' 
+STATICFILES_DIRS = [              
+   BASE_DIR / 'carzone/static',
+]
+# +++
+
+(env) >> python manage.py collectstatic
+# Static folder in the root is created.
+
+| home.html :
+{% load static %} #+++ in the begining
+
+change css href to {% static 'path' %}
+same for js
+and img in the banner
+
+in carzone/static/js/app/js
+add path static/ in the begiining of path to logo.png
