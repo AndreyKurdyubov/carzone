@@ -102,4 +102,31 @@ same for js
 and img in the banner
 
 in carzone/static/js/app/js
-add path static/ in the begiining of path to logo.png
+add path static/ in the beginning of path to logo.png
+
+06.12.2021
+Base template.
+
+create template/base.html
+in this file copy following:
+cut from home.html the main header (up to banner). This is the base content of the site.
+
+# +++
+{% block content %} 
+
+{% end block %}
+
+cut from home.html last part including js files and closing body and html tags
+
+in the file home.html:
+# +++
+{% extends 'base.html' %} 
+
+{% block content %}
+
+{% endblock %}
+
+{% load static %}
+
+The home page works as earlier but it loads from base.html now.
+
