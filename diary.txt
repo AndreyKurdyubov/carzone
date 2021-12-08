@@ -130,3 +130,14 @@ in the file home.html:
 
 The home page works as earlier but it loads from base.html now.
 
+08.12.2021
+Breaking html template.
+
+Create folder template/includes.
+In this folder create topbar.html navbar.html and footer.html
+Cut and paste the corresponding parts of base.html and home html into these files.
+
+In base.html replace the cutted parts of code by 
+{% include 'includes/topbar.html' %} # +++
+{% include 'includes/navbar.html' %} # +++
+{% include 'includes/footer.html' %} # +++
